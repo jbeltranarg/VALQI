@@ -40,10 +40,37 @@ Fecha de las pruebas: 20/10/2026. Peticiones con `requests`, User-Agent propio
    (`.../valencia-capital/l-eixample/russafa/s`).
 7. **Veredicto: VIABLE con requests + BeautifulSoup**, con selectores más difíciles que pisos.com.
 
-## Pendiente
+## Aviso legal / condiciones de uso (leído el 20/10/2026)
 
-- Leer el aviso legal / las condiciones de uso de ambos portales (habitaclia es del grupo
-  Adevinta, igual que fotocasa y milanuncios) y citarlos en el documento.
+**pisos.com** (titular: HabitatSoft, S.L., https://www.pisos.com/avisolegal)
+- No menciona expresamente el scraping, los robots ni la extracción automática.
+- Apartado 3, Propiedad Intelectual: los contenidos son del portal o de terceros, y acceder a
+  ellos *"no otorga al Usuario el derecho de alteración, modificación, explotación,
+  reproducción, distribución o comunicación pública"*.
+- El usuario se compromete a usar los contenidos *"para su propio uso y necesidades, y a no
+  realizar en ningún caso una explotación comercial, directa o indirecta de los mismos"*.
+
+**habitaclia.com** (titular: Fotocasa Group, S.L.U., grupo Adevinta,
+https://www.habitaclia.com/hab_cliente/legal_aviso.asp)
+- Tampoco menciona expresamente el scraping, los robots ni la extracción automática.
+- Apartado 4, Propiedad intelectual: los contenidos, *"incluyendo [...] textos, imágenes y/o
+  bases de datos"*, están protegidos, y el acceso no da derecho a *"explotación [...],
+  reproducción, distribución o comunicación pública"* sin autorización,
+  *"salvo en los supuestos expresamente contemplados en la legislación aplicable"*.
+
+**Qué implica para el proyecto**
+- Uso académico, sin ánimo de lucro y sin explotación comercial.
+- **No republicar los anuncios**: ni descripciones, ni fotos, ni el listado completo.
+  En el repositorio público y en la presentación solo van estadísticas agregadas
+  (precio medio por barrio, €/m²...) y el código.
+- **Los datos brutos no se suben a GitHub**: hay que añadir `data/` al `.gitignore`.
+- Solo guardamos campos objetivos del inmueble (precio, m², habitaciones, baños, barrio, URL)
+  y nada del anunciante (nombre, teléfono, inmobiliaria).
+- Volumen bajo y pausas entre peticiones, para no extraer una parte sustancial de la base de
+  datos ni cargar sus servidores.
+
+*No es asesoramiento legal: es nuestra lectura de las condiciones. Conviene confirmarla con
+el profesor.*
 
 ## Comprobación rápida de los portales del resto del grupo (misma fecha)
 
