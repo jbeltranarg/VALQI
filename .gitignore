@@ -221,3 +221,7 @@ __marimo__/
 
 # Notas personales (no se suben a GitHub)
 notas/
+
+# Datos recogidos de los portales: no se suben al repo público (avisos legales)
+data/*
+!data/.gitkeep
