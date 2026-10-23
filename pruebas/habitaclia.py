@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 CIUDAD = "valencia-capital"
 URL = f"https://www.habitaclia.com/alquiler/viviendas/valencia-provincia/{CIUDAD}/s"
-CABECERAS = {"User-Agent": "AlquilerVLC-UPV-ATD/0.1 (proyecto academico)"}
+CABECERAS = {"User-Agent": "VALQI-UPV/1.0 (proyecto universitario)"}
 
 
 def buscar_texto(anuncio, final):

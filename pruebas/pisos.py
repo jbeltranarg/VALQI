@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 CIUDAD = "valencia_capital"
 URL = f"https://www.pisos.com/alquiler/pisos-{CIUDAD}/"
-CABECERAS = {"User-Agent": "AlquilerVLC-UPV-ATD/0.1 (proyecto academico)"}
+CABECERAS = {"User-Agent": "VALQI-UPV/1.0 (proyecto universitario)"}
 
 
 def leer_m2(anuncio):
