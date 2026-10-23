@@ -1,6 +1,7 @@
-# Mini script de viabilidad: imprime 5 anuncios de alquiler de habitaclia.com
-# AVISO: escrito con IA (Claude), declarado en el portafolio.
-import time
+# Prueba de viabilidad de habitaclia.com (Persona B, VALQI)
+# Imprime 5 anuncios de alquiler de Valencia capital con precio, m², barrio y URL.
+# USO DE IA: script escrito por Claude Opus 5.5 (estructura, la función buscar_texto
+# y la extracción del barrio desde la URL).
 import requests
 from bs4 import BeautifulSoup
 
@@ -35,6 +36,4 @@ if respuesta.status_code == 200:
         # lo lleva justo antes de la ciudad: .../camins-al-grau/valencia-capital/...
         partes = enlace.split("/")
         barrio = partes[partes.index(CIUDAD) - 1]
-        print(f"{precio:>12} | {m2:>7} | {barrio} | https://www.habitaclia.com{enlace}")
-
-time.sleep(2)  # pausa de cortesía antes de cualquier otra petición
+        print(precio, "|", m2, "|", barrio, "|", "https://www.habitaclia.com" + enlace)
