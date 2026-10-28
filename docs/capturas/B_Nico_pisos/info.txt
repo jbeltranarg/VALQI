@@ -1,0 +1,15 @@
+Portal: pisos.com
+Responsable (letra y nombre): B - Nico
+URL usada: https://www.pisos.com/alquiler/pisos-valencia_capital/ (redirige a https://www.pisos.com/alquiler/pisos-valencia_capital_zona_urbana/)
+Fecha y hora de las capturas: 
+Código de estado: 200
+Anuncios en la página 1: 33 (entre 31 y 33 según el día)
+Total de anuncios que indica la web: 972 resultados (28/10/2026)
+Número de páginas aproximado: 30 (972 / 33). Página N: .../pisos-valencia_capital_zona_urbana/N/
+Columnas que el portal NO da (o da a veces): habitaciones y baños faltan en algunos anuncios (5 sin habitaciones y 3 sin baños de 33 el 28/10); se dejan vacíos. El resto de columnas aparecen siempre.
+Problemas encontrados y cómo se resolvieron:
+- Habitaciones, baños, m² y planta tienen la misma clase (ad-preview__char) y no siempre aparecen todos: cada dato se reconoce por su texto ("hab", "baño", "m²"), no por su posición.
+- El barrio y el distrito vienen juntos ("El Mercat (Distrito Ciutat Vella. València Capital)"): se separan con split(" (") y split("Distrito ").
+- El precio viene como "1.100 €/mes": se toma la primera palabra, se quita el punto de miles y se pasa a entero.
+- El tipo no tiene campo propio: se saca de la primera palabra del título ("Ático en ..." -> "ático").
+- La URL de Valencia capital redirige a "zona urbana"; se comprobó que es la misma página e incluye las pedanías (Benimàmet, El Perellonet).
