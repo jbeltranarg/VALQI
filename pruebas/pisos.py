@@ -67,7 +67,9 @@ for anuncio in anuncios:
 
     anuncios_limpios.append({
         "portal": PORTAL,
-        "id_anuncio": anuncio["id"],                    # atributo id del div del anuncio
+        # El id viene como "68397966198.101800": cambiamos el punto por "_" (como en la URL)
+        # para que Excel no lo lea como un número y lo estropee
+        "id_anuncio": anuncio["id"].replace(".", "_"),
         "tipo": titulo.get_text(strip=True).split()[0].lower(),  # "Ático en ..." -> "ático"
         "precio": numero(precio),
         "m2": leer_caracteristica(anuncio, "m²"),

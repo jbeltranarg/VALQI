@@ -1,7 +1,7 @@
 Portal: pisos.com
 Responsable (letra y nombre): B - Nico
 URL usada: https://www.pisos.com/alquiler/pisos-valencia_capital/ (redirige a https://www.pisos.com/alquiler/pisos-valencia_capital_zona_urbana/)
-Fecha y hora de las capturas: 
+Fecha y hora de las capturas: 28/10/2026, entre las 12:00 y las 12:08
 Código de estado: 200
 Anuncios en la página 1: 33 (entre 31 y 33 según el día)
 Total de anuncios que indica la web: 972 resultados (28/10/2026)
@@ -12,4 +12,7 @@ Problemas encontrados y cómo se resolvieron:
 - El barrio y el distrito vienen juntos ("El Mercat (Distrito Ciutat Vella. València Capital)"): se separan con split(" (") y split("Distrito ").
 - El precio viene como "1.100 €/mes": se toma la primera palabra, se quita el punto de miles y se pasa a entero.
 - El tipo no tiene campo propio: se saca de la primera palabra del título ("Ático en ..." -> "ático").
+- El id del portal ("68397966198.101800") Excel lo leía como número (salía ##########): se cambia el punto por "_", igual que en la URL del anuncio.
 - La URL de Valencia capital redirige a "zona urbana"; se comprobó que es la misma página e incluye las pedanías (Benimàmet, El Perellonet).
+
+Capturas: 05a muestra el principio de la salida (primeras 30 líneas: cabecera y 2 anuncios completos) y 05b el final (anuncios 3 a 5 y "CSV guardado"). 04a-04c cubren el script entero (líneas 1-37, 37-73 y 73-109).
