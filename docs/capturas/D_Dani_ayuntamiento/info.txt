@@ -1,0 +1,30 @@
+Fuente: API de datos abiertos del Ayuntamiento de Valencia
+Responsable: D (Dani)
+Datasets usados (nombre y enlace a su página):
+  - Barrios: https://opendata.vlci.valencia.es/dataset/barris-barrios/resource/1e4b42b6-d655-497c-8441-8d049d14be03
+  - Aparcamientos por distritos-barrios (población):
+    https://opendata.vlci.valencia.es/dataset/car-parks-by-districts-neighborhoods
+URL o endpoint de la API usado:
+  - Barrios (API REST ArcGIS del Geoportal):
+    https://geoportal.valencia.es/server/rest/services/OPENDATA/UrbanismoEInfraestructuras/MapServer/224/query
+  - Población (API CKAN, datastore_search):
+    https://opendata.vlci.valencia.es/api/3/action/datastore_search?resource_id=6810cb63-d55c-4ffa-9b5d-5dcbbdce171c
+Licencia de los datos: Atribución 4.0 Internacional (CC BY 4.0), ambos datasets
+Fecha y hora de las capturas: 28/10/2026, entre las 12:45 y las 13:20.
+Código de estado: 200 en las dos peticiones
+Número de barrios y distritos obtenidos: 88 barrios, 19 distritos
+Dato por barrio elegido y año al que corresponde: población empadronada
+  (columna HABITANTES). El dataset no indica el año; se creó el 28/01/2022
+  (fuente: MESURA).
+Problemas encontrados y cómo se resolvieron:
+  - El robots.txt del Geoportal no es accesible: el servidor corta la conexión
+    (curl: "Connection reset by peer"). Usamos la URL de API que publica el
+    propio portal de datos abiertos para este dataset, con licencia CC BY 4.0.
+  - Los nombres oficiales vienen en valenciano y en mayúsculas en los dos
+    datasets. Se mantienen tal cual; la unificación se hará por código de barrio.
+  - El dataset de población mezcla totales de distrito, franjas de edad y
+    barrios: nos quedamos con las filas GRUPOS = "Grupo 2" (los 88 barrios).
+  - Una franja de edad aparece como "05-sep" en lugar de "5-9" (Excel la
+    convirtió en fecha antes de publicarse). No afecta a nuestro dato.
+  - Nombres distintos entre datasets (MONTOLIVET / MONT-OLIVET): se comparan
+    sin guiones y así coinciden los 88.
