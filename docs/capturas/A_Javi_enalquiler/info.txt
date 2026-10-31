@@ -1,7 +1,7 @@
 Portal: Enalquiler (enalquiler.com)
 Responsable (letra y nombre): A (Javi)
 URL usada: https://www.enalquiler.com/alquiler-pisos-valencia-48-2-0-50692.html
-Fecha y hora de las capturas: 30/10/2026 20:20-20:25 (código, salida y CSV); 31/10/2026 10:33-10:36 (web, robots.txt y HTML)
+Fecha y hora de las capturas: 30/10/2026 20:20-20:25 (código, salida y CSV); 31/10/2026 11:01-11:04 (web, robots.txt e inspector)
 Código de estado: 200
 Anuncios en la página 1: 15
 Total de anuncios que indica la web: 817 pisos en Valencia (30/10/2026; la cifra cambia a diario)
@@ -18,8 +18,3 @@ Problemas encontrados y cómo se resolvieron:
   desde el final (último = ciudad, penúltimo = barrio, antepenúltimo = distrito).
 - Detalles irregulares (m², habitaciones, baños): cada dato se reconoce por su texto ("m2", "Hab",
   "Baño") y no por su posición.
-Notas sobre las capturas:
-- 01a y 01b: tomadas en el navegador integrado de la app de Claude, que es estrecho; por eso la web
-  se ve en su versión para pantallas pequeñas. 01a muestra el total de viviendas y 01b el primer anuncio.
-- 03: en lugar del inspector del navegador, se muestra el HTML de un anuncio (fragmento de la página
-  descargada, sin fotos ni descripción) abierto en VS Code, con las clases propertyCard__... que usa el script.
