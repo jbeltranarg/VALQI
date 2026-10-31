@@ -1,0 +1,25 @@
+Portal: Enalquiler (enalquiler.com)
+Responsable (letra y nombre): A (Javi)
+URL usada: https://www.enalquiler.com/alquiler-pisos-valencia-48-2-0-50692.html
+Fecha y hora de las capturas: 30/10/2026 20:20-20:25 (código, salida y CSV); 31/10/2026 10:33-10:36 (web, robots.txt y HTML)
+Código de estado: 200
+Anuncios en la página 1: 15
+Total de anuncios que indica la web: 817 pisos en Valencia (30/10/2026; la cifra cambia a diario)
+Número de páginas aproximado: 55 (15 anuncios por página). Página N: /alquiler-pisos-valencia_48_50692_2/N
+Columnas que el portal NO da (o da a veces):
+- tipo: no aparece en cada anuncio; sale del código de la dirección (2 = pisos).
+- habitaciones y baños: 3 de los 15 anuncios no los indican (en su lugar pone "Piso"); se dejan vacíos.
+- distrito y barrio: siempre aparecen, pero a veces la ubicación empieza por la calle.
+Problemas encontrados y cómo se resolvieron:
+- Codificación: la web declara ISO-8859-1 pero escribe el símbolo € con Windows-1252. Con la
+  codificación declarada, el precio no se podía convertir a número. Se resolvió indicando
+  respuesta.encoding = "cp1252" antes de leer el HTML.
+- Ubicación con calle al principio ("Ripalda 12, Ciutat Vella, Sant Francesc, Valencia"): se lee
+  desde el final (último = ciudad, penúltimo = barrio, antepenúltimo = distrito).
+- Detalles irregulares (m², habitaciones, baños): cada dato se reconoce por su texto ("m2", "Hab",
+  "Baño") y no por su posición.
+Notas sobre las capturas:
+- 01a y 01b: tomadas en el navegador integrado de la app de Claude, que es estrecho; por eso la web
+  se ve en su versión para pantallas pequeñas. 01a muestra el total de viviendas y 01b el primer anuncio.
+- 03: en lugar del inspector del navegador, se muestra el HTML de un anuncio (fragmento de la página
+  descargada, sin fotos ni descripción) abierto en VS Code, con las clases propertyCard__... que usa el script.
