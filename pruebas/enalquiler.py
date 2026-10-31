@@ -3,7 +3,7 @@
 # Fecha: 30/10/2026
 # Qué hace: descarga la página 1 de pisos en alquiler de Valencia capital en Enalquiler,
 #   extrae las columnas comunes de cada anuncio, imprime 5 y guarda la página en CSV.
-# Uso de IA: (pendiente de rellenar)
+# Uso de IA: código escrito con ayuda de Claude Opus 5.5 a partir de la prueba de viabilidad de Javi. La idea es mantener una estructura ordenada para publicarlo. Revisado, ejecutado y comprobado por Javi.
 import csv
 from datetime import date
 
