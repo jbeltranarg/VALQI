@@ -18,4 +18,4 @@ Problemas encontrados y cómo se resolvieron:
 - id del anuncio: la primera versión cogía el último trozo de la dirección, que siempre es "d" (las direcciones terminan en /<código>/d). Se corrigió cogiendo el trozo que va justo después de "valencia-capital" (p. ej. 788dcb21-df7e-4b41-9f5d-61b61b97b6f3).
 - Tipo: no tiene campo propio; sale de la primera palabra del título ("Piso en ..." -> "piso"). Tipos encontrados en la página 1: piso, apartamento, ático y loft.
 
-Capturas: 03 está hecha en la ficha del primer anuncio (mismo <span> del precio); 03b muestra en el listado el enlace <a> con el href del que salen el barrio y el id. 04a-04d cubren el script entero. 05a muestra la cabecera y los anuncios 1 a 3; 05b, los anuncios 4 y 5 y "CSV guardado".
+Capturas: 03 muestra el <span> del precio (1.650 €/mes) en la ficha del primer anuncio; 03b muestra en el listado el enlace <a> (data-panot-component="link-box-link") de un anuncio, de cuyo href salen el barrio y el id (29 coincidencias = 29 anuncios). 04a-04c cubren el script entero (pruebas/habitaclia.py del repositorio). 05a muestra la cabecera y los anuncios 1 a 3; 05b, los anuncios 4 y 5 y "CSV guardado".
