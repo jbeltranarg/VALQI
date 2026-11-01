@@ -11,6 +11,8 @@ URL o endpoint de la API usado:
     https://opendata.vlci.valencia.es/api/3/action/datastore_search?resource_id=6810cb63-d55c-4ffa-9b5d-5dcbbdce171c
 Licencia de los datos: Atribución 4.0 Internacional (CC BY 4.0), ambos datasets
 Fecha y hora de las capturas: 28/10/2026, entre las 12:45 y las 13:20.
+  Repetidas el 01/11/2026 hacia las 22:00: 02_api_barrios, 03_json_barrios
+  y 04_cabecera (nueva).
 Código de estado: 200 en las dos peticiones
 Número de barrios y distritos obtenidos: 88 barrios, 19 distritos
 Dato por barrio elegido y año al que corresponde: población empadronada
@@ -28,3 +30,10 @@ Problemas encontrados y cómo se resolvieron:
     convirtió en fecha antes de publicarse). No afecta a nuestro dato.
   - Nombres distintos entre datasets (MONTOLIVET / MONT-OLIVET): se comparan
     sin guiones y así coinciden los 88.
+  - RAFALELL-VISTABELLA sale con población 0. Es el dato del origen, no un
+    fallo del script: en el dataset de población su fila "Grupo 2" trae
+    HABITANTES = "0" (y todas las demás columnas a 0). Es una pedanía casi
+    despoblada de Poblats del Nord. Se deja tal cual.
+  - En el Geoportal, RAFALELL-VISTABELLA y MAHUELLA-TAULADELLA tienen el mismo
+    código de barrio (coddistbar = 175, codbarrio = 5). Error del origen: al
+    unificar por código habrá que distinguir estos dos barrios por el nombre.
