@@ -3,7 +3,7 @@
 # Fecha: 28/10/2026
 # Qué hace: descarga la página 1 de alquileres de Valencia capital en pisos.com,
 #   extrae las columnas comunes de cada anuncio, imprime 5 y guarda la página en CSV.
-# Uso de IA: sí; se detalla en la exposición oral.
+# Uso de IA: código escrito con ayuda de Claude Opus 5.5 a partir de la prueba de viabilidad de Nico. La idea es mantener una estructura ordenada para publicarlo. Revisado, ejecutado y comprobado por Nico.
 import csv
 from datetime import date
 
