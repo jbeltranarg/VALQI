@@ -1,0 +1,21 @@
+Portal: habitaclia (habitaclia.com)
+Responsable (letra y nombre): C (Javier Higuera)
+URL usada: https://www.habitaclia.com/alquiler/viviendas/valencia-provincia/valencia-capital/s
+Fecha y hora de las capturas: 01/11/2026, entre las 11:00 y las 11:30
+Código de estado: 200
+Anuncios en la página 1: 29
+Total de anuncios que indica la web: 2.215 casas y pisos en alquiler en Valencia Capital (01/11/2026; la cifra cambia a diario)
+Número de páginas aproximado: 77 (2.215 / 29). Página N: .../valencia-capital/s/N
+Columnas que el portal NO da (o da a veces):
+- distrito: el listado no lo da; se dejará vacío y se completará en la limpieza con los datos del Ayuntamiento (D).
+- barrio: no siempre aparece en el texto del anuncio, pero siempre va en la dirección del anuncio, justo antes de la ciudad. Se guarda tal como aparece ahí (p. ej. "extramurs", "quatre-carreres").
+- habitaciones y baños: los 29 anuncios indican habitaciones; 2 de 29 no indican baños y se dejan vacíos.
+Problemas encontrados y cómo se resolvieron:
+- Clases CSS genéricas: habitaclia no pone a cada dato una clase que diga qué es, así que cada dato (precio, m², habitaciones, baños) se reconoce por su texto ("€/mes", "m²", "hab", "baño"), no por su clase ni por su posición.
+- Etiquetas anidadas: un <span> puede contener otros <span> con varios datos juntos ("88 m²3 habs."). Solo se leen los <span> que no tienen otro <span> dentro.
+- Enlace del anuncio: se busca con find_all("a") y .get("href") el enlace que contiene "valencia-capital". Viene sin el dominio, así que se añade "https://www.habitaclia.com" delante.
+- Paginación: robots.txt prohíbe el parámetro ?pag=; la paginación permitida es por ruta (/s/2, /s/3...).
+- id del anuncio: la primera versión cogía el último trozo de la dirección, que siempre es "d" (las direcciones terminan en /<código>/d). Se corrigió cogiendo el trozo que va justo después de "valencia-capital" (p. ej. 788dcb21-df7e-4b41-9f5d-61b61b97b6f3).
+- Tipo: no tiene campo propio; sale de la primera palabra del título ("Piso en ..." -> "piso"). Tipos encontrados en la página 1: piso, apartamento, ático y loft.
+
+Capturas: 03 está hecha en la ficha del primer anuncio (mismo <span> del precio); 03b muestra en el listado el enlace <a> con el href del que salen el barrio y el id. 04a-04d cubren el script entero. 05a muestra la cabecera y los anuncios 1 a 3; 05b, los anuncios 4 y 5 y "CSV guardado".
