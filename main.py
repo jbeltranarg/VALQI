@@ -166,7 +166,12 @@ def buscar(tabla, barrios):
 
     print(f"\n{len(resultado)} anuncios encontrados. Los 10 más baratos:")
     columnas = ["portal", "tipo", "precio", "m2", "habitaciones", "barrio_oficial", "url"]
-    print(resultado.sort_values("precio")[columnas].head(10).to_string(index=False))
+    mostrar = resultado.sort_values("precio")[columnas].head(10).copy()
+    # Al haber datos vacíos, pandas guarda estos números con decimales (3.0): los pasamos
+    # a enteros solo para mostrarlos (Int64 admite vacíos)
+    for columna in ["precio", "m2", "habitaciones"]:
+        mostrar[columna] = mostrar[columna].round(0).astype("Int64")
+    print(mostrar.to_string(index=False))
 
 
 def comparar_portales(tabla):
