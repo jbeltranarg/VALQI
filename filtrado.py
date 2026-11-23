@@ -110,6 +110,15 @@ def buscar_nombre(texto, claves_oficiales, sinonimos):
     return ""
 
 
+def sinonimos_en_clave():
+    # El diccionario SINONIMOS pasado a claves, para poder compararlo con clave(texto).
+    # Lo usan el filtrado y el buscador de main.py, así los dos entienden los mismos nombres
+    sinonimos = {}
+    for escrito, oficial in SINONIMOS.items():
+        sinonimos[clave(escrito)] = clave(oficial)
+    return sinonimos
+
+
 def normalizar_tipo(tipo):
     t = clave(tipo).lower()
     if t in TIPOS:
@@ -153,9 +162,7 @@ def homogeneizar(anuncios, barrios):
     tabla_barrios["clave"] = tabla_barrios["barrio"].apply(clave)
     claves_barrios = list(tabla_barrios["clave"])
     claves_distritos = list(tabla_barrios["distrito"].apply(clave).unique())
-    sinonimos = {}
-    for escrito, oficial in SINONIMOS.items():
-        sinonimos[clave(escrito)] = clave(oficial)
+    sinonimos = sinonimos_en_clave()
 
     claves_encontradas = []
     for _, fila in df.iterrows():

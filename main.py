@@ -117,6 +117,7 @@ def resumen_barrios(tabla, barrios):
         precio_m2_medio=("precio_m2", "mean"),
         poblacion=("poblacion", "first"),
     ).round(0)
+    resumen["poblacion"] = resumen["poblacion"].astype("Int64")  # 3013.0 -> 3013
     # Anuncios por cada 1.000 habitantes: cuánta oferta hay para el tamaño del barrio
     resumen["anuncios_por_1000_hab"] = (resumen["anuncios"] / resumen["poblacion"] * 1000).round(2)
     resumen = resumen.sort_values("precio_m2_medio", ascending=False)
@@ -124,20 +125,44 @@ def resumen_barrios(tabla, barrios):
     print(resumen.to_string())
 
 
-def buscar(tabla):
+def buscar(tabla, barrios):
     # Opción 5: el usuario filtra por barrio o distrito, precio máximo y habitaciones
     texto = input("Barrio o distrito (Enter = cualquiera): ").strip()
     precio_max = pedir_numero("Precio máximo (€/mes)", 200, 15000, 15000)
     habitaciones = pedir_numero("Habitaciones mínimas", 0, 10, 0)
 
-    resultado = tabla[tabla["precio"] <= precio_max]
+    resultado = tabla
+    if texto != "":
+        # Reconocemos el nombre igual que en el filtrado: nombre oficial, sinónimos en
+        # castellano ("Ruzafa") o el más parecido con difflib (erratas)
+        claves_barrios = list(barrios["barrio"].apply(filtrado.clave))
+        k = filtrado.buscar_nombre(texto, claves_barrios, filtrado.sinonimos_en_clave())
+        columna = "barrio_oficial"
+        tipo_zona = "barrio"
+        if k == "":
+            # Si no es un barrio, probamos con los distritos
+            claves_distritos = list(barrios["distrito"].dropna().apply(filtrado.clave).unique())
+            k = filtrado.buscar_nombre(texto, claves_distritos, {})
+            columna = "distrito_oficial"
+            tipo_zona = "distrito"
+        if k == "":
+            print(f"  No hay ningún barrio ni distrito de Valencia llamado '{texto}'.")
+            return
+
+        en_la_zona = tabla[tabla[columna].fillna("").apply(filtrado.clave) == k]
+        if columna == "barrio_oficial":
+            nombre = barrios[barrios["barrio"].apply(filtrado.clave) == k]["barrio"].iloc[0]
+        else:
+            nombre = barrios[barrios["distrito"].fillna("").apply(filtrado.clave) == k]["distrito"].iloc[0]
+        print(f"  Buscando en el {tipo_zona} {nombre}")
+        if len(en_la_zona) == 0:
+            print(f"  El {tipo_zona} existe, pero en esta descarga no hay anuncios en él.")
+            return
+        resultado = en_la_zona
+
+    resultado = resultado[resultado["precio"] <= precio_max]
     if habitaciones > 0:
         resultado = resultado[resultado["habitaciones"] >= habitaciones]
-    if texto != "":
-        k = filtrado.clave(texto)
-        coincide = (tabla["barrio_oficial"].fillna("").apply(filtrado.clave) == k) | \
-                   (tabla["distrito_oficial"].fillna("").apply(filtrado.clave) == k)
-        resultado = resultado[coincide[resultado.index]]
 
     print(f"\n{len(resultado)} anuncios encontrados. Los 10 más baratos:")
     columnas = ["portal", "tipo", "precio", "m2", "habitaciones", "barrio_oficial", "url"]
@@ -186,7 +211,7 @@ def menu():
             elif opcion == "4":
                 resumen_barrios(tabla, barrios)
             elif opcion == "5":
-                buscar(tabla)
+                buscar(tabla, barrios)
             else:
                 comparar_portales(tabla)
         else:
